@@ -18,9 +18,15 @@
  */
 
 
+
+
 function normalizeKey(title) {
   return title.toLowerCase().replace(/\s+/g, '-');
 }
+
+
+
+
 
 function createCompareLightbox(hostPageData, targetPageData) {
   // Create overlay
@@ -60,7 +66,7 @@ function createCompareLightbox(hostPageData, targetPageData) {
   if (productStore[leftKey]) {
     const newPriceEl = document.createElement('span');
     newPriceEl.className = 'new-price';
-    newPriceEl.textContent = `AED. ${productStore[leftKey].newPrice}`;
+    newPriceEl.textContent = `KES. ${productStore[leftKey].newPrice}`;
     leftPrice.appendChild(newPriceEl);
     //hideCompareExtras(leftPrice);
   }
@@ -105,7 +111,7 @@ function createCompareLightbox(hostPageData, targetPageData) {
   if (productStore[rightKey]) {
     const newPriceEl = document.createElement('span');
     newPriceEl.className = 'new-price';
-    newPriceEl.textContent = `AED. ${productStore[rightKey].newPrice}`;
+    newPriceEl.textContent = `KES. ${productStore[rightKey].newPrice}`;
     rightPrice.appendChild(newPriceEl);
     //hideCompareExtras(rightPrice);
   }
@@ -153,6 +159,8 @@ function createCompareLightbox(hostPageData, targetPageData) {
 
 
 
+
+
 // --- Dynamic helper: fetch page and extract required elements ---
 async function fetchPageDataFromUrl(url) {
   try {
@@ -163,7 +171,7 @@ async function fetchPageDataFromUrl(url) {
     const doc = parser.parseFromString(html, 'text/html');
 
     const titleEl = doc.querySelector('.name-box');
-    const imgEl = doc.querySelector('.main-product-img-cont');
+    const imgEl = doc.querySelector('.bike-images-cont #main') || doc.querySelector('.main-product-img-cont');
     const priceEl = doc.querySelector('.price-cont');
     // Try the more specific combined classes first, then fall back
     let contentEl = doc.querySelector('.wrapper.mid-section.dark-section');
@@ -185,7 +193,7 @@ async function fetchPageDataFromUrl(url) {
 // --- Build host data from current document ---
 function gatherHostPageData() {
   const titleEl = document.querySelector('.name-box');
-  const imgEl = document.querySelector('.main-product-img-cont');
+  const imgEl = document.querySelector('.bike-images-cont #main') || document.querySelector('.main-product-img-cont');
   const priceEl = document.querySelector('.price-cont');
   let contentEl = document.querySelector('.wrapper.mid-section.dark-section');
   if (!contentEl) contentEl = document.querySelector('.wrapper.mid-section');

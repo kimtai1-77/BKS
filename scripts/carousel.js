@@ -14,12 +14,16 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
   function getScrollAmount() {
     const firstCard = carouselItems.querySelector('.card');
     if (!firstCard) return 300;
-    const cardWidth = firstCard.offsetWidth;
-    const gap = window.getComputedStyle(carouselItems).gap;
-    const gapValue = parseFloat(gap) || 0;
-    return cardWidth + gapValue;
+
+    const cardWidth = firstCard.offsetWidth; // includes border and padding
+    const cardStyle = window.getComputedStyle(firstCard);
+    const marginLeft = parseFloat(cardStyle.marginLeft) || 0;
+
+    const gap = parseFloat(window.getComputedStyle(carouselItems).gap) || 0;
+    return cardWidth + marginLeft + gap;
   }
 
+  
   // Update scroll bar (if present)
   function updateScrollBar() {
     if (!scrollBar) return;
@@ -48,7 +52,10 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
   if (rightArrow) rightArrow.addEventListener('click', scrollRight);
 
   // Update on manual scroll
-  carouselItems.addEventListener('scroll', updateScrollBar);
+  carouselItems.addEventListener('scroll', () => {
+    updateScrollBar();
+     updateArrows();
+    });
 
   // Touch & swipe
   let touchStartX = 0;
@@ -58,18 +65,45 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
   function handleTouchEnd(event) {
     const touchEndX = event.changedTouches[0].clientX;
     const swipeDistance = touchStartX - touchEndX;
-    const minSwipeDistance = 50;
-    if (swipeDistance > minSwipeDistance) {
-      scrollRight();
-    } else if (swipeDistance < -minSwipeDistance) {
-      scrollLeft();
+    const minSwipeDistance = 50; // threshold to avoid accidental taps
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      carouselItems.scrollBy({
+        left: swipeDistance,      // proportional to actual distance
+        behavior: "smooth" 
+      });
     }
   }
+
+
+  // grey out arrows when at start/end 
+  function updateArrows() {
+    if (!leftArrow || !rightArrow) return;
+
+    const maxScroll = carouselItems.scrollWidth - carouselItems.clientWidth;
+    const currentScroll = carouselItems.scrollLeft;
+
+    // disable left arrow if at start
+    if (currentScroll <= 0) {
+      leftArrow.classList.add('disabled');
+    } else {
+      leftArrow.classList.remove('disabled');
+    }
+
+    // disable right arrow if at end
+    if (currentScroll >= maxScroll) {
+      rightArrow.classList.add('disabled');
+    } else {
+      rightArrow.classList.remove('disabled');
+    }
+  }
+
   carouselItems.addEventListener('touchstart', handleTouchStart, false);
   carouselItems.addEventListener('touchend', handleTouchEnd, false);
 
   // Initialize visual state
   updateScrollBar();
+  updateArrows();
 });
 
 

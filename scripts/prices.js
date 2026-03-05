@@ -3,48 +3,48 @@
 const productStore = {
   "orbea-laufey-h10": {
     oldPrice: 280000,
-    newPrice: 260000
+    newPrice: 260000,
+    sellerNumber: +254716060708
   },
  
   "orbea-laufey-h30": {
-    oldPrice: 7495,
-    newPrice: 7495
+    oldPrice: 0,
+    newPrice: 0
   },
 
   "orbea-laufey-h-ltd": {
-    oldPrice: 11495,
-    newPrice: 11495
+    oldPrice: 0,
+    newPrice: 0
   },
 
   "orbea-occam-sl-h30": {
-    oldPrice: 13500,
-    newPrice: 12995
+    oldPrice: 0,
+    newPrice: 0
   },
 
   "orbea-occam-lt-h30": {
-    oldPrice: 13995,
-    newPrice: 13000
+    oldPrice: 0,
+    newPrice: 0
   },
 
   "orbea-occam-sl-h10": {
-    oldPrice: 13995,
-    newPrice: 13995,
-    sellerNumber: +254716060708
+    oldPrice: 0,
+    newPrice: 0
   },
 
   "orbea-occam-lt-h10": {
-    newPrice: 560995
+    newPrice: 580000
   },
 
   "orbea-occam-sl-m30": {
-    oldPrice: 19495,
-    newPrice: 19495
+    oldPrice: 0,
+    newPrice: 0
   }
 };
 
 function calculateDiscount(oldPrice, newPrice) {
   return oldPrice > newPrice
-    ? Math.round(((oldPrice - newPrice) / oldPrice) * 100)
+    ? Math.round(oldPrice - newPrice)
     : 0;
 }
 
@@ -64,11 +64,11 @@ function syncProduct(productName) {
 
     if (product.newPrice < product.oldPrice) {
       if (oldMain) {
-        oldMain.textContent = `KES. ${product.oldPrice}`;
+        oldMain.textContent = `Ksh. ${product.oldPrice}`;
         oldMain.style.display = "inline"; // force visible
       }
       if (discMain) {
-        discMain.textContent = `-${discount}%`;
+        discMain.textContent = `Save ${discount}/=`;
         discMain.style.display = "block"; // force visible
       }
     } else {
@@ -89,7 +89,7 @@ function syncProduct(productName) {
         oldCard.style.display = "inline"; // force visible
       }
       if (discCard) {
-        discCard.textContent = `-${discount}%`;
+        discCard.textContent = `${discount}/= Off`;
         discCard.style.display = "block"; // force visible
       }
     } else {
