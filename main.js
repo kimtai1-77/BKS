@@ -5,7 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   
   updateCarouselDiscounts();
   selectImageFromThumbnails();
+  goHome();
 })
+
+
+
+
+function gotoPage(url) {
+    window.location.href = url;
+}
+
 
 
 
@@ -301,6 +310,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+
+// hearts on love button click
+const likeBtn = document.getElementById("like");
+
+// store original HTML to restore later
+const originalHTML = likeBtn.innerHTML;
+
+likeBtn.addEventListener("click", () => {
+  likeBtn.classList.toggle("active");
+
+  if (likeBtn.classList.contains("active")) {
+    for (let i = 0; i < 5; i++) {
+      createHeart();
+  }
+    likeBtn.innerHTML = `Liked!`;
+  } else {
+    likeBtn.innerHTML = originalHTML;
+  } 
+});
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("likes");
+  heart.textContent = "👍";
+
+  // Random size
+  const size = Math.random() * 30 + 15; // 15px–45px
+  heart.style.fontSize = size + "px";
+
+  // Random color
+  const colors = ["#782c64", "#e18b76", "#a4a2a2", "#52190b", "#F5B27A"];
+  heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+ // get button position 
+  const rect = likeBtn.getBoundingClientRect();
+
+  // random X across 80% button width
+  const spread = rect.width * 0.6;
+  const x = rect.left + (rect.width - spread) / 2 + Math.random() * spread;
+  const y = rect.top + rect.height / 2; // position to start throwing hearts
+  
+  // place heart at button center 
+  heart.style.left = x + "px"; 
+  heart.style.top = y + "px";
+
+  // random sideways drift
+  const drift = (Math.random() - 0.5) * 100 + "px"; // -50px to +50px 
+  heart.style.setProperty("--drift", drift);
+
+  document.body.appendChild(heart);
+
+  // Remove after animation
+  setTimeout(() => {
+    heart.remove();
+  }, 2500);
+}
+
 
 
 
