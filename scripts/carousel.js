@@ -37,6 +37,7 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
     scrollBar.style.width = Math.min(100, Math.max(0, scrollPercentage)) + '%';
   }
 
+  // scroll using arrows
   function scrollRight() {
     const scrollAmount = getScrollAmount();
     carouselItems.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -46,35 +47,6 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
     const scrollAmount = getScrollAmount();
     carouselItems.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   }
-
-  // Attach arrow events if arrows exist
-  if (leftArrow) leftArrow.addEventListener('click', scrollLeft);
-  if (rightArrow) rightArrow.addEventListener('click', scrollRight);
-
-  // Update on manual scroll
-  carouselItems.addEventListener('scroll', () => {
-    updateScrollBar();
-     updateArrows();
-    });
-
-  // Touch & swipe
-  let touchStartX = 0;
-  function handleTouchStart(event) {
-    touchStartX = event.changedTouches[0].clientX;
-  }
-  function handleTouchEnd(event) {
-    const touchEndX = event.changedTouches[0].clientX;
-    const swipeDistance = touchStartX - touchEndX;
-    const minSwipeDistance = 50; // threshold to avoid accidental taps
-    
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      carouselItems.scrollBy({
-        left: swipeDistance,      // proportional to actual distance
-        behavior: "smooth" 
-      });
-    }
-  }
-
 
   // grey out arrows when at start/end 
   function updateArrows() {
@@ -98,8 +70,15 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
     }
   }
 
-  carouselItems.addEventListener('touchstart', handleTouchStart, false);
-  carouselItems.addEventListener('touchend', handleTouchEnd, false);
+  // Attach arrow events if arrows exist
+  if (leftArrow) leftArrow.addEventListener('click', scrollLeft);
+  if (rightArrow) rightArrow.addEventListener('click', scrollRight);
+
+  // Update on manual scroll
+  carouselItems.addEventListener('scroll', () => {
+    updateScrollBar();
+     updateArrows();
+    });
 
   // Initialize visual state
   updateScrollBar();
