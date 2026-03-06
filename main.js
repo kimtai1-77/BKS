@@ -379,17 +379,20 @@ function initMainContScrollbar() {
   const container = document.querySelector(".bike-images-cont");
   const fill = document.querySelector(".scrollbar-fill");
 
-  if (!container || !fill) return;
-
   function updateScrollbar() {
     const visible = container.clientWidth; // part of the container that's visible
     const total = container.scrollWidth;  // entire container width
+
+    if (total <= visible) {
+    fill.style.width = "0%"; // hide thumb if no scrolling needed
+    return;
+  }
 
     // thumb width = visible portion of the container
     const thumbwidth = (visible / total) * 100;
 
     // thumb position = scroll progress
-    const scrollProgress = (container.scrollLeft / total) * 100;  // calculates how much you've scrolled as a percentage of total width
+    const scrollProgress = (container.scrollLeft / (total - visible)) * 100;   // calculates how much you've scrolled as a percentage of total width
 
     fill.style.width = thumbwidth + "%";
     fill.style.transform = `translateX(${scrollProgress}%)`; // moves the thumb alonth the track to match scroll position
