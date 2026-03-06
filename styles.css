@@ -518,8 +518,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    width: 100%;
+    height: 100%;
+    width: 90%;
     padding: 2.4rem 0 .8rem;
     position: relative;
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -1481,7 +1481,6 @@ input[type=number] {
     text-decoration: none;
     border: 1px solid var(--nt-050);
     position: relative;
-    scroll-snap-align: start; /* snap each card to the start when scrolling */
     /*background-color: var(--nt-050);*/
 }
 
