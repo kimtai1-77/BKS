@@ -2526,10 +2526,6 @@ input[type=number] {
     flex-direction: column;
   }
 
-  .compare-price-cont span.new-price {
-    color: var(--nt-500);
-  }
-
   .compare-side {
     border-right: none;
     border-bottom: 1px solid var(--nt-200);
@@ -2542,12 +2538,11 @@ input[type=number] {
   .compare-header {
     padding: 1.25rem;
     gap: 0.8rem;
-    background-color: var(--nt-50);
   }
 
   .compare-header .compare-title {
-    color: var(--p-600);
     font-weight: 400;
+    color: var(--p-100);
   }
 
   .compare-content {
