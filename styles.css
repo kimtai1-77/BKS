@@ -518,7 +518,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 90%;
     width: 100%;
     padding: 2.4rem 0 .8rem;
     position: relative;
@@ -617,7 +617,7 @@ body {
 
 .bike-images-cont::-webkit-scrollbar {
     height: 4px;
-    display: none;  /* hide native scrollbar by default */
+    /*display: none; */ /* hide native scrollbar by default */
 }
 
 .bike-images-cont::-webkit-scrollbar-track {
@@ -642,19 +642,23 @@ body {
 }
 
 .scrollbar {
+  position: relative;
   height: .4rem;
   background: var(--nt-100);
   border-radius: .4rem;
-  margin-top: .8 rem;
+  margin-top: .8rem;
   overflow: hidden;
 }
 
 .scrollbar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 0%;
   background: var(--p-600);
   border-radius: .4rem;
-  transition: width 0.08s linear;
+  transition: width 0.08s linear, transform 0.08s linear;
 }
 
 .bike-sale-details-cont {
@@ -1347,6 +1351,25 @@ body.lock-scroll {
     } 
 }
 
+@media (max-width: 460px) {
+  .offer-bar {
+    height: 3.2rem;
+  }
+
+  .offer-bar > * {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .search-bar {
+    height: 4.8rem;
+  }
+
+  .product-page {
+    margin-top: 76px;
+  }
+}
+
 @media (max-width: 420px) {
     .bike-images-cont {
       justify-content: flex-start;
@@ -1427,8 +1450,8 @@ input[type=number] {
   scroll-behavior: smooth;
   flex: 1;
   padding: 0.5rem 0;
-  /* Hide the default scrollbar */
-  scrollbar-width: none;
+  scrollbar-width: none;   /* Hide the default scrollbar */
+  scroll-snap-type: x mandatory;  /* snap horizontally */
 }
 
 .carousel-items.small {
@@ -1444,6 +1467,7 @@ input[type=number] {
 .card {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     gap: .2rem;
     min-width: 238px;
     max-width: 238px;
@@ -1457,6 +1481,7 @@ input[type=number] {
     text-decoration: none;
     border: 1px solid var(--nt-050);
     position: relative;
+    scroll-snap-align: start; /* snap each card to the start when scrolling */
     /*background-color: var(--nt-050);*/
 }
 
@@ -1965,6 +1990,7 @@ input[type=number] {
     gap: 1.8rem;
     padding: 1.4rem;
     max-width: 100%;
+    margin-top: 108px;
   }
 
   .bikes-header h2 {
