@@ -617,7 +617,7 @@ body {
 
 .bike-images-cont::-webkit-scrollbar {
     height: 4px;
-    display: block;
+    display: none; /* hide scrollbar by default */
 }
 
 .bike-images-cont::-webkit-scrollbar-track {
@@ -1353,7 +1353,7 @@ body.lock-scroll {
 
 @media (max-width: 460px) {
   .offer-bar {
-    height: 2rem;
+    height: 2.8rem;
   }
 
   .offer-bar > * {
@@ -1362,11 +1362,11 @@ body.lock-scroll {
   }
 
   .search-bar {
-    height: 4rem;
+    height: 4.8rem;
   }
 
   .product-page {
-    margin-top: 60px;
+    margin-top: 76px;
   }
 }
 
