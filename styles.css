@@ -147,6 +147,8 @@ p.small {
     cursor: pointer;
     font-size: clamp(1.2rem, 1rem + 0.3vw, 2rem);
     font-weight: 600;
+    width: 100%;
+    max-width: 296px;
     background-color: var(--p-500);
     border: none;
     border-radius: 8px;
@@ -164,15 +166,16 @@ p.small {
   justify-content: center;
   align-items: center;
   margin: auto;
+  padding: 3.6rem;
   min-height: 100vh;
+  background-color: var(--nt-050);
 }
 
-.landing .btn-main {
+/*.landing .btn-main {
   text-decoration: none;
   max-width: 480px;
   width: 100%;
-  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.6rem);
-}
+}*/
 
 .hero-section {
   margin-top: 140px;
@@ -602,10 +605,19 @@ body {
     margin-bottom: .8rem;
     scroll-behavior: smooth;
     min-width: 0;
+    -webkit-overflow-scrolling: touch;  /* smooth scrolling on iOS */
+    scroll-snap-type: x mandatory;  /* aligns to the nearest snap point */
+    scroll-padding-left: 1.2rem;  /* ensures the first image respects padding when snapping */
+    touch-action: pan-x;  /* allows horizontal scrolling on touch devices */
+}
+
+.bike-images-cont:active {
+  cursor: grabbing; /* enables dragging the gallery with the mouse like a touch swipe */
 }
 
 .bike-images-cont::-webkit-scrollbar {
     height: 4px;
+    display: none;  /* hide native scrollbar by default */
 }
 
 .bike-images-cont::-webkit-scrollbar-track {
@@ -623,9 +635,26 @@ body {
 }
 
 .scroll-img {
-    width: auto;
-    height: 6.8rem;
-    flex-shrink: 0;
+  width: auto;
+  height: 6.8rem;
+  flex-shrink: 0;
+  scroll-snap-align: start;  /* snap to the start of each image */
+}
+
+.scrollbar {
+  height: .4rem;
+  background: var(--nt-100);
+  border-radius: .4rem;
+  margin-top: .8 rem;
+  overflow: hidden;
+}
+
+.scrollbar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--p-600);
+  border-radius: .4rem;
+  transition: width 0.08s linear;
 }
 
 .bike-sale-details-cont {
@@ -1079,7 +1108,6 @@ body {
     cursor: pointer;
     background-color: white;
     width: 100%;
-    font-size: 1.2rem;
 }
 
 .with-img {
@@ -1090,7 +1118,7 @@ body {
 }
 
 .with-img.active {
-  background-color: var(--like-050);
+  background-color: var(--nt-050);
   color: var(--nt-600);
 }
 
@@ -1111,13 +1139,9 @@ body {
     border-radius: 16px;
     padding: .2rem;
     cursor: pointer;
+    color: var(--nt-500);
     height: 4.8rem;
     cursor: pointer;
-}
-
-.wishlist-box button:hover {
-    background-color: var(--nt-50);
-    color: var(--nt-600);
 }
 
 .part-description-cont {
@@ -2751,6 +2775,10 @@ input[type=number] {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   width: 100%;
+}
+
+.whatsapp-content .btn-main {
+  max-width: none;
 }
 
 .whatsapp-subtitle {
