@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCarouselDiscounts();
   selectImageFromThumbnails();
   goHome();
+  initMainContScrollbar();
 })
 
 
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// hearts on love button click
+// thumbs-up on like button click
 const likeBtn = document.getElementById("like");
 
 // store original HTML to restore later
@@ -333,17 +334,17 @@ likeBtn.addEventListener("click", () => {
 });
 
 function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("likes");
-  heart.textContent = "👍";
+  const like = document.createElement("div");
+  like.classList.add("likes");
+  like.textContent = "👍";
 
   // Random size
   const size = Math.random() * 30 + 15; // 15px–45px
-  heart.style.fontSize = size + "px";
+  like.style.fontSize = size + "px";
 
   // Random color
   const colors = ["#782c64", "#e18b76", "#a4a2a2", "#52190b", "#F5B27A"];
-  heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+  like.style.color = colors[Math.floor(Math.random() * colors.length)];
 
  // get button position 
   const rect = likeBtn.getBoundingClientRect();
@@ -354,19 +355,50 @@ function createHeart() {
   const y = rect.top + rect.height / 2; // position to start throwing hearts
   
   // place heart at button center 
-  heart.style.left = x + "px"; 
-  heart.style.top = y + "px";
+  like.style.left = x + "px"; 
+  like.style.top = y + "px";
 
   // random sideways drift
   const drift = (Math.random() - 0.5) * 100 + "px"; // -50px to +50px 
-  heart.style.setProperty("--drift", drift);
+  like.style.setProperty("--drift", drift);
 
-  document.body.appendChild(heart);
+  document.body.appendChild(like);
 
   // Remove after animation
   setTimeout(() => {
     heart.remove();
   }, 2500);
+}
+
+
+
+
+// make div scrollbar behave like a webkit scrollbar
+
+function initMainContScrollbar() {
+  const container = document.querySelector(".bike-images-cont");
+  const fill = document.querySelector(".scrollbar-fill");
+
+  if (!container || !fill) return;
+
+  function updateScrollbar() {
+    const visible = container.clientWidth; // part of the container that's visible
+    const total = container.scrollWidth;  // entire container width
+
+    // thumb width = visible portion of the container
+    const thumbwidth = (visible / total) * 100;
+
+    // thumb position = scroll progress
+    const scrollProgress = (container.scrollLeft / total) * 100;  // calculates how much you've scrolled as a percentage of total width
+
+    fill.style.width = thumbwidth + "%";
+    fill.style.transform = `translateX(${scrollProgress}%)`; // moves the thumb alonth the track to match scroll position
+  }
+
+  container.addEventListener("scroll", updateScrollbar);
+  window.addEventListener("resize", updateScrollbar); // recalculate on resize
+
+  updateScrollbar(); // initialize on page load
 }
 
 
