@@ -262,6 +262,7 @@ body {
     color: var(--nt-50);
     text-shadow: var(--p-100);
     cursor: pointer;
+    font-family: "Bungee Shade", "Sora", monospace;
 }
 
 .search-bar {
@@ -518,8 +519,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 90%;
+    height: 90%;
+    width: 100%;
     padding: 2.4rem 0 .8rem;
     position: relative;
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -553,7 +554,7 @@ body {
   position: absolute;
   top: 2.4rem;
   left: 0px;
-  background: linear-gradient(125deg, var(--p-100), var(--p-050));
+  background: linear-gradient(125deg, var(--p-100), var(--nt-050));
   padding: .4rem 2rem;
   margin: 0;
   font-size: clamp(.8rem, 1rem + 0.5vw, 1.6rem);
@@ -1503,7 +1504,6 @@ input[type=number] {
     background-color: white;
     min-height: 150px;
     height: 240px;
-    border-bottom: 1px solid var(--);
     background-color: var(--nt-050);
 }
 
