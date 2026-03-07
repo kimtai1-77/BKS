@@ -68,8 +68,8 @@ function syncProduct(productName) {
         oldMain.style.display = "inline"; // force visible
       }
       if (discMain) {
-        discMain.textContent = `Save ${discount}/=`;
-        discMain.style.display = "block"; // force visible
+        discMain.textContent = `Price reduced by ${discount}/=`;
+        discMain.style.display = "none"; // make invisible
       }
     } else {
       if (oldMain) oldMain.remove();
