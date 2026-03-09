@@ -1548,6 +1548,8 @@ input[type=number] {
 .card-info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 2rem;
   padding: 0 1rem 1rem 1rem;
   /*min-height: 80px;*/
@@ -1558,6 +1560,7 @@ input[type=number] {
   color: var(--nt-600);
   font-weight: 400;
   line-height: 1.5;
+  text-align: center;
   margin: 0;
   padding-top: 1.2rem;
   height: 60px;
@@ -1581,7 +1584,7 @@ input[type=number] {
 
 .card-price {
   font-size: clamp(1.4rem, 1.5rem + 0.3vw, 2.4rem);
-  color: var(--p-500);
+  color: var(--nt-500);
   font-weight: 600;
   margin: 0;
 }
@@ -1603,7 +1606,8 @@ input[type=number] {
     font-size: clamp(0.9rem, 0.8rem + 0.3vw, 1.4rem);
     position: absolute;
     bottom: 0;
-    left: 0rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .carousel-btn:hover {
@@ -1808,7 +1812,7 @@ input[type=number] {
   min-width: 280px;
   max-width: 280px;
   height: 400px;
-  border: 1px solid var(--nt-100);
+  border: 1px solid var(--p-50);
   border-radius: 1.2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -1828,10 +1832,6 @@ input[type=number] {
 }
 
 .bikes-grid .card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   /*gap: 2.4rem;*/
   padding: 1.6rem 1.4rem 1.4rem 1.4rem;
   height: 108px;
@@ -1839,9 +1839,6 @@ input[type=number] {
 
 .bikes-grid .card-product {
   font-size: clamp(1.2rem, 1.2rem + 0.2vw, 1.4rem);
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: center;
   margin: 0;
   padding-top: 0;
   height: auto;
@@ -1858,7 +1855,6 @@ input[type=number] {
 
 .bikes-grid .card-price {
   font-size: clamp(1.6rem, 1.6rem + 0.4vw, 2rem);
-  color: var(--p-500);
   font-weight: 600;
   margin: 0;
   line-height: 1;

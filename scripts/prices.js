@@ -44,7 +44,7 @@ const productStore = {
 
 function calculateDiscount(oldPrice, newPrice) {
   return oldPrice > newPrice
-    ? Math.round(oldPrice - newPrice)
+    ? Math.round(((oldPrice - newPrice) / oldPrice) * 100)
     : 0;
 }
 
@@ -89,7 +89,7 @@ function syncProduct(productName) {
         oldCard.style.display = "inline"; // force visible
       }
       if (discCard) {
-        discCard.textContent = `${discount}/= Off`;
+        discCard.textContent = `${discount}% Off`;
         discCard.style.display = "block"; // force visible
       }
     } else {
