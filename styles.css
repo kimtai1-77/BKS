@@ -1569,7 +1569,7 @@ input[type=number] {
 .card-price-cont {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .card-price-cont p {
@@ -1577,9 +1577,10 @@ input[type=number] {
 }
 
 .card-old-price {
+    font-size: clamp(1rem, 1rem + 0.3vw, 1.8rem);
     text-decoration: line-through;
     color: var(--nt-200);
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .card-price {
@@ -1863,8 +1864,6 @@ input[type=number] {
 .bikes-grid .card-old-price {
   text-decoration: line-through;
   color: var(--nt-300);
-  font-weight: 300;
-  font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
   margin: 0;
 }
 
