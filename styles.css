@@ -121,7 +121,7 @@ h6 {
 }
 
 p {
-    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.6rem);
+    font-size: clamp(1.2rem, 1rem + 0.3vw, 1.6rem);
     line-height: 1.6;
     color: var(--nt-800);
 }
@@ -241,26 +241,27 @@ body {
     left: 0;
     right: 0;
     width: 100%;
+    height: 140px;
     z-index: 1000;
     background-color: white;
     box-shadow: 0px 4px 16px rgba(0,0,0,0.1);
 }
 
 .offer-bar {
-    background: linear-gradient(135deg, var(--p-200), var(--p-800), var(--p-500));
-    background-color: var(--t-700);
+    /*background: linear-gradient(135deg, var(--p-200), var(--p-800), var(--p-500));*/
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    
     width: 100vw;
     background-size: 400% 400%;
     animation: gradientShift 96s ease-in-out infinite;
 }
 
 .offer-bar > * {
-    color: var(--nt-50);
+    color: var(--p-700);
     text-shadow: var(--p-100);
+    margin: 1.2rem 0 0 0;
     cursor: pointer;
     font-family: "Bungee Shade", "Sora", monospace;
 }
@@ -426,7 +427,7 @@ body {
 
 /* add rule: active state for overlay */
 .mobile-overlay.active {
-    opacity: 1;
+    opacity: 0.9;
     pointer-events: auto;   /* allow clicks to close menu */
 }
 
@@ -1272,8 +1273,8 @@ body.lock-scroll {
         padding: 2.8rem 1.6rem;
     }
 
-    .search-bar {
-      height: 7.2rem;
+    .top-bar {
+        height: 112px;
     }
 
     .main-product-img {
@@ -1353,17 +1354,17 @@ body.lock-scroll {
 }
 
 @media (max-width: 460px) {
+
+  .top-bar {
+    height: 96px;
+  }
+
   .offer-bar {
     height: 2.8rem;
   }
 
   .offer-bar > * {
     margin: 0;
-    font-size: 14px;
-  }
-
-  .search-bar {
-    height: 4.8rem;
   }
 
   .product-page {
