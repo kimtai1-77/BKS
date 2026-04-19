@@ -26,69 +26,15 @@ function contactSeller() {
 }
 
 /**
- * sendMessagePreview - Validates form and navigates to confirmation page
+ * sendDirectMessage - Validates form and sends directly to WhatsApp
  * Called from seller-message.html
  */
-function sendMessagePreview() {
-  const customerNumberInput = document.getElementById('customer-number');
+function sendDirectMessage() {
   const messageInput = document.getElementById('message-input');
+  const productId = sessionStorage.getItem('currentProductId');
 
-  // Validate inputs
-  if (!customerNumberInput.value.trim()) {
-    alert('Please enter your phone number');
-    return;
-  }
-
+  // Validate input
   if (!messageInput.value.trim()) {
-    alert('Please enter your message');
-    return;
-  }
-
-  // Store data in sessionStorage (secret variables)
-  sessionStorage.setItem('customerNumber', customerNumberInput.value);
-  sessionStorage.setItem('customerMessage', messageInput.value);
-
-  // Navigate to confirmation page
-  window.location.href = 'confirmation.html';
-}
-
-/**
- * loadConfirmationPreview - Populates confirmation page with editable input fields
- * Called from confirmation.html
- */
-function loadConfirmationPreview() {
-  const customerNumber = sessionStorage.getItem('customerNumber');
-  const customerMessage = sessionStorage.getItem('customerMessage');
-  const productId = sessionStorage.getItem('currentProductId');
-
-  if (!customerNumber || !customerMessage || !productId) {
-    alert('Session expired. Please try again.');
-    window.location.href = 'seller-message.html';
-    return;
-  }
-
-  // Populate the editable input fields
-  document.getElementById('editable-number').value = customerNumber;
-  document.getElementById('editable-message').value = customerMessage;
-}
-
-/**
- * sendToWhatsApp - Opens WhatsApp with message only
- * Called from confirmation.html
- */
-function sendToWhatsApp() {
-  const productId = sessionStorage.getItem('currentProductId');
-  // Get updated values from editable fields
-  const customerNumber = document.getElementById('editable-number').value;
-  const customerMessage = document.getElementById('editable-message').value;
-
-  // Validate that fields are not empty
-  if (!customerNumber.trim()) {
-    alert('Please enter your phone number');
-    return;
-  }
-
-  if (!customerMessage.trim()) {
     alert('Please enter your message');
     return;
   }
@@ -100,21 +46,19 @@ function sendToWhatsApp() {
   }
 
   const sellerNumber = productStore[productId].sellerNumber;
-  
-  // Send only the message text (no customer number prefix)
-  const encodedMessage = encodeURIComponent(customerMessage);
-  
+  const encodedMessage = encodeURIComponent(messageInput.value);
+
   // WhatsApp Click-to-Chat URL format
   const whatsappUrl = `https://wa.me/${sellerNumber}?text=${encodedMessage}`;
 
   // Clear sessionStorage after sending
-  sessionStorage.removeItem('customerNumber');
-  sessionStorage.removeItem('customerMessage');
   sessionStorage.removeItem('currentProductId');
 
   // Open WhatsApp
   window.open(whatsappUrl, '_blank');
 }
+
+
 
 /**
  * openQuestion - Opens question-page.html when .question is clicked
