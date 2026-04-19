@@ -2,7 +2,7 @@
  * contactInfo - Business contact details for WhatsApp messaging
  */
 const contactInfo = {
-  phoneNumber: "", // Add phone number (e.g., +254716060708)
+  phoneNumber: "+254716060708",
   email: "" // Add email address
 };
 
