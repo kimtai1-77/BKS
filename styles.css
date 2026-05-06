@@ -165,7 +165,7 @@ p.small {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  /*margin: auto;*/
   padding: 3.6rem;
   min-height: 100vh;
   background-color: var(--nt-050);
@@ -251,18 +251,18 @@ body {
 }
 
 .offer-bar {
-    background: linear-gradient(135deg, var(--p-200), var(--p-800), var(--p-500));
+    /*background: linear-gradient(135deg, var(--p-200), var(--p-800), var(--p-500));*/
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
+    height: 180px;
     width: 100vw;
     background-size: 400% 400%;
     animation: gradientShift 96s ease-in-out infinite;
 }
 
 .offer-bar > * {
-    color: var(--nt-050);
+    /*color: var(--nt-050);*/
     text-shadow: var(--p-100);
     margin: 0 0 0;
     cursor: pointer;
